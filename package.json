@@ -1,0 +1,8 @@
+{
+  "name": "advent-of-code-2019",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Stopa/advent-of-code-2019.git",
+  "author": "Stepan Bolotnikov <stepan.bolotnikov@proekspert.ee>",
+  "license": "MIT"
+}
