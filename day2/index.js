@@ -42,7 +42,7 @@ fs.readFile('./input.txt', (e, data) => {
       const result = runIntcode(ops);
 
       if (result[0] === desiredOutput) {
-        console.log(`Noun: ${noun}; verb: ${verb}; result: ${100 * noun * verb}`);
+        console.log(`Noun: ${noun}; verb: ${verb}; result: ${100 * noun + verb}`);
         return;
       }
     }
