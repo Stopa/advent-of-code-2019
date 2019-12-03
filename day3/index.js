@@ -30,14 +30,23 @@ fs.readFile('./input.txt', (e, data) => {
     })));
   const firstWirePath = {};
   const collisions = [];
+  let stepsTaken = 0;
   
-  walkPath(wires[0], (coords) => firstWirePath[JSON.stringify(coords)] = true);
+  walkPath(wires[0], (coords) => {
+    stepsTaken++;
+    firstWirePath[JSON.stringify(coords)] = stepsTaken;
+  });
+
+  stepsTaken = 0;
 
   walkPath(wires[1], (coords) => {
-    if (firstWirePath[JSON.stringify(coords)]) {
-      collisions.push(coords);
+    const cSt = JSON.stringify(coords);
+    stepsTaken++;
+
+    if (firstWirePath[cSt]) {
+      collisions.push(firstWirePath[cSt] + stepsTaken);
     }
   });
 
-  console.log(collisions.map(c => manhattanDistance(c)).sort((a, b) => a - b)[0]);
+  console.log(collisions.sort((a, b) => a - b)[0]);
 });
