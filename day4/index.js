@@ -4,7 +4,7 @@ let num = 0;
 
 outer: for (let pw = min; pw <= max; pw++) {
   const digits = pw.toString().split('');
-  let adjacents = false;
+  let pair = false;
 
   for (let i = 1; i < digits.length; i++) {
     const digit = parseInt(digits[i], 10);
@@ -14,12 +14,12 @@ outer: for (let pw = min; pw <= max; pw++) {
       continue outer;
     }
 
-    if (digit === lastDigit) {
-      adjacents = true;
+    if (digits.filter(d => parseInt(d, 10) === digit).length === 2) {
+      pair = true;
     }
   }
 
-  if (adjacents) {
+  if (pair) {
     num++;
   }
 }
