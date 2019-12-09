@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:Stopa/advent-of-code-2019.git",
   "author": "Stepan Bolotnikov <stepan.bolotnikov@proekspert.ee>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
