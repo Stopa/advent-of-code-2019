@@ -29,7 +29,7 @@ const runIntcode = (ops) => {
     const op = parseInt(ops[instructionPointer].toString().substr(-2), 10);
 
     switch (op) {
-      case 1: {
+      case 1: { // add
         const v1 = param(0);
         const v2 = param(1);
         const resultIndex = ops[instructionPointer + 3];
@@ -37,7 +37,7 @@ const runIntcode = (ops) => {
         instructionPointer += 4;
         break;
       }
-      case 2: {
+      case 2: { // multiply
         const v1 = param(0);
         const v2 = param(1);
         const resultIndex = ops[instructionPointer + 3];
@@ -45,16 +45,60 @@ const runIntcode = (ops) => {
         instructionPointer += 4;
         break;
       }
-      case 3: {
+      case 3: { // input
         const resultIndex = ops[instructionPointer + 1];
         ops[resultIndex] = parseInt(rl.question('Input operation: '), 10);
         instructionPointer += 2;
         break;
       }
-      case 4: {
+      case 4: { // output
         const v1 = param(0);
         console.log(`Output operation: ${v1}`);
         instructionPointer += 2;
+        break;
+      }
+      case 5: { // jump-if-true
+        const v1 = param(0);
+        const v2 = param(1);
+        if (v1 !== 0) {
+          instructionPointer = v2;
+        } else {
+          instructionPointer += 3;
+        }
+        break;
+      }
+      case 6: { // jump-if-false
+        const v1 = param(0);
+        const v2 = param(1);
+        if (v1 === 0) {
+          instructionPointer = v2;
+        } else {
+          instructionPointer += 3;
+        }
+        break;
+      }
+      case 7: { // less than
+        const v1 = param(0);
+        const v2 = param(1);
+        const resultIndex = ops[instructionPointer + 3];
+        if (v1 < v2) {
+          ops[resultIndex] = 1;
+        } else {
+          ops[resultIndex] = 0;
+        }
+        instructionPointer += 4;
+        break;
+      }
+      case 8: { // equals
+        const v1 = param(0);
+        const v2 = param(1);
+        const resultIndex = ops[instructionPointer + 3];
+        if (v1 === v2) {
+          ops[resultIndex] = 1;
+        } else {
+          ops[resultIndex] = 0;
+        }
+        instructionPointer += 4;
         break;
       }
       case 99:
